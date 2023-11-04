@@ -27,6 +27,8 @@ class Connection(threading.Thread):
         data = self.client_socket.recv(1024).decode()
         print(data)
         self.client_socket.send(data.upper().encode())
+        # linha abaixo deve ser descomentada para a Q2 item F, comentar as linhas acima
+        # self.client_socket.send("kelvyaaaaa\n123\n19".encode())
 
 if __name__ == "__main__":
     server = TCPServer()

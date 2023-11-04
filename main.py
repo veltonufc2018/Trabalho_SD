@@ -6,7 +6,7 @@ from streams.output_stream import PessoasOutputStream
 from streams.input_stream import PessoasInputStream
 
 def main():
-    people_list = [Pessoa('Luciana', '123', 20), Pessoa('Carlos', '456', 21)]
+    # people_list = [Pessoa('Luciana', '123', 20), Pessoa('Carlos', '456', 21)]
     people_list = []
 
     input_stream_stdin = PessoasInputStream(sys.stdin)
@@ -17,6 +17,7 @@ def main():
     person = input_stream_filein.read_file()
     people_list.append(person)
     
+    # descomentar fragmento de código no servidor para funcionar
     # input_stream_tcp = PessoasInputStream(socket.socket(socket.AF_INET, socket.SOCK_STREAM))
     # person = input_stream_tcp.read_tcp()
     # people_list.append(person)

@@ -27,7 +27,9 @@ class PessoasInputStream(InputStream):
     def read_tcp(self):
         with self.entrada as sock:
             sock.connect(("localhost", 7896))
-            dados = sock.recv(1024)
-            print('Resposta do servidor:', data.decode())
-            # pessoa = self.read_bytes(dados)
-        return Pessoa("nome", "123", 20)
+            dados = sock.recv(1024).decode().split("\n")
+            nome = dados[0]
+            cpf = dados[1]
+            idade = dados[2]
+            person = Pessoa(nome, cpf, idade)
+        return person
