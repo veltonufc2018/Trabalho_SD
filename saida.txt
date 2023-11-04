@@ -1,0 +1,11 @@
+Quantidade de pessoas:2
+Bytes do nome: 54
+nome da pessoa: kelvy
+cpf da pessoa: 123
+idade da pessoa: 19
+
+Bytes do nome: 54
+nome da pessoa: kelvy
+cpf da pessoa: 987
+idade da pessoa: 21
+

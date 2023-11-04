@@ -1,39 +1,33 @@
-import io
 from entities.pessoa import Pessoa
+from io import BufferedReader as InputStream
 from typing import List
+import socket
 
 
-class PessoaInputStream(io.IOBase):
-    def __init__(self, pessoas, entrada):
-        self.pessoas = pessoas
+class PessoasInputStream(InputStream):
+    def __init__(self, entrada):
         self.entrada = entrada
 
     def read_system(self):
-        name = input("Enter the person's name:")
-        cpf = input("Enter the person's cpf:")
-        age = int(input("Enter the person's age:"))
+        nome = self.entrada.readline()[:-1]
+        cpf = self.entrada.readline()[:-1]
+        idade = self.entrada.readline()[:-1]
 
-        self.people[0] = Pessoa(name, cpf, age)
-        return self.people
+        person = Pessoa(nome, cpf, idade)
+        return person
 
     def read_file(self):
-        return self.people
+        with open("entrada.txt", "r") as f:
+            nome = f.readline()[:-1]
+            cpf = f.readline()[:-1]
+            idade = f.readline()
+            person = Pessoa(nome, cpf, idade)
+        return person
 
     def read_tcp(self):
-        return self.people
-
-    def read(self):
-        return 0
-        # Implement this method if needed, but it's not clear how it should behave in your context.
-
-# Exemplo de uso:
-
-if __name__ == "__main__":
-    pessoas = [{}]
-    entrada = io.BytesIO(b'Sua Entrada Aqui')  # Substitua pela sua entrada
-
-    stream = PessoasInputStream(pessoas, entrada)
-    stream.read_system()
-
-    print("Dados lidos:")
-    print(stream.read_file())
+        with self.entrada as sock:
+            sock.connect(("localhost", 7896))
+            dados = sock.recv(1024)
+            print('Resposta do servidor:', data.decode())
+            # pessoa = self.read_bytes(dados)
+        return Pessoa("nome", "123", 20)
